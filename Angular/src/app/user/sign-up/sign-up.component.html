@@ -1,0 +1,84 @@
+<div class="modal loginModalBackground" [ngClass]="{'show':showSignUp}"
+  [ngStyle]="{ 'display': showSignUp ? 'block' : 'none' }">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content  modalBorder container-fluid px-2">
+      <div class="modal-header row border-bottom w-100 border-secondary" style="text-align: center;">
+        <h3 class="col-11 text-light " style="text-align: center;">
+          Create your Carflex account
+        </h3>
+        <a href="" class="col-1 text-decoration-none" style="color: red;font-size: 50px;"
+          (click)="navigateToLogin()">×</a>
+      </div>
+
+      <div class="modal-body text-light w-100" [formGroup]="signUp">
+        <div class="row form-group">
+          <div class="col-lg-6">
+            <label for="fname" type="text" class="form-label ms-2">First Name</label>
+            <input type="text" class="form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="fname" placeholder="Lavan">
+            <div class="text-danger ms-2" *ngIf="signUp.get('fname')?.touched&&signUp.get('fname')?.invalid">
+              <small *ngIf="signUp.get('fname')?.hasError('required')">First Name is required</small>
+              <small *ngIf="signUp.get('fname')?.hasError('minlength')">Minimum of 3 characters required</small>
+            </div>
+          </div>
+          <div class="col-lg-6 ">
+            <label for="lname" type="text" class="form-label ms-2">Last Name</label>
+            <input type="text" class="form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="lname" placeholder="Bharatha">
+            <div class="text-danger ms-2" *ngIf="signUp.get('lname')?.touched&&signUp.get('lname')?.invalid">
+              <small *ngIf="signUp.get('lname')?.hasError('required')">Last Name is required</small>
+              <small *ngIf="signUp.get('lname')?.hasError('minlength')">Minimum of 3 characters required</small>
+            </div>
+          </div>
+        </div>
+        <div class="row form-group mt-4">
+          <div class="col-lg-6">
+            <label for="city" type="text" class="form-label col-6 ms-2">City</label>
+            <input type="text" class="col-6 form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="city" placeholder="Enter the City name">
+            <div class="text-danger ms-2" *ngIf="signUp.get('city')?.touched&&signUp.get('city')?.invalid">
+              <small *ngIf="signUp.get('city')?.hasError('required')">City is required</small>
+              <small *ngIf="signUp.get('city')?.hasError('minlength')">Minimum of 3 characters required</small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <label for="state" type="text" class="form-label col-6 ms-2">state</label>
+            <input type="text" class="col-6 form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="state" placeholder="Enter you state name">
+            <div class="text-danger ms-2" *ngIf="signUp.get('state')?.touched&&signUp.get('state')?.invalid">
+              <small *ngIf="signUp.get('state')?.hasError('required')">Mobile Number is required</small>
+              <small *ngIf="signUp.get('state')?.hasError('minlength')">Minimum of 3 characters required</small>
+            </div>
+          </div>
+        </div>
+        <div class="row form-group mt-4">
+          <div class="col-lg-6">
+            <label for="pNumber" type="text" class="form-label col-6 ms-2">Mobile Number</label>
+            <input type="text" class="col-6 form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="pNumber" placeholder="Enter Your Phone Number">
+            <div class="text-danger ms-2" *ngIf="signUp.get('pNumber')?.touched&&signUp.get('pNumber')?.invalid">
+              <small *ngIf="signUp.get('pNumber')?.hasError('required')">Gmail is required</small>
+              <small *ngIf="signUp.get('pNumber')?.hasError('minlength')">Minimum of 3 characters required</small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <label for="signGmail" type="text" class="form-label col-6 ms-2">Gmail</label>
+            <input type="text" class="col-6 form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="signGmail" placeholder="lavanbharatha25@gmail.com">
+            <div class="text-danger ms-2" *ngIf="signUp.get('signGmail')?.touched&&signUp.get('signGmail')?.invalid">
+              <small *ngIf="signUp.get('signGmail')?.hasError('required')">Gmail is required</small>
+              <small *ngIf="signUp.get('signGmail')?.hasError('minlength')">Minimum of 3 characters required</small>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-5">
+          <button class="btn btn-success"><small>SignUp</small></button>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+
+
+  

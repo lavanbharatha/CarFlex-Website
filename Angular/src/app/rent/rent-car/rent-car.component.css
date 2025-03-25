@@ -1,0 +1,73 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  border-radius: 15px;
+  margin: 25px 25px 25px 25px;
+  background-color: #C0C5CC;
+}
+
+img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card-footer {
+  text-align: center;
+}
+
+.card-body {
+  background-color: #E8E9EB;
+}
+
+.btnPrice {
+  background-color: #C0C5CC;
+  width: 150px;
+}
+
+.btnPurpose {
+
+  background-color: rgb(116, 167, 116);
+  border-color: rgb(116, 167, 116);
+}
+
+.btnPurpose:hover {
+  background-color: green;
+  border-radius: green;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: translateY(-15px) translateX(+15px);
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.card {
+  animation: appear 5s;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+.container {
+  padding-top: 50px;
+  z-index: 1020;
+}
+
+.card {
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+}

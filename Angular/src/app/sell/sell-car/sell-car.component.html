@@ -1,0 +1,131 @@
+<div class="modal loginModalBackground" [ngClass]="{'show':showSell}"
+  [ngStyle]="{ 'display': showSell ? 'block' : 'none' }">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content modalBorder container-fluid px-2">
+      <div class="modal-header w-100 row border-bottom border-dark">
+        <h3 class="text-light col-11">
+          Fill Up Your Details in the below Form
+        </h3>
+        <a href="" class="col-1 text-decoration-none" style="color: red;font-size: 50px;"
+          (click)="navigateToHome()">×</a>
+
+      </div>
+      <div class="modal-body text-light w-100" [formGroup]="sellDetails">
+        <div class="row form-group mt-3">
+          <div class="col-lg-6">
+            <label for="fname" type="text" class="form-label ms-2">First Name</label>
+            <input type="text" class="form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="fname" placeholder="Lavan">
+            <div class="text-danger ms-2" *ngIf="sellDetails.get('fname')?.touched&&sellDetails.get('fname')?.invalid">
+              <small *ngIf="sellDetails.get('fname')?.hasError('required')">First Name is required</small>
+              <small *ngIf="sellDetails.get('fname')?.hasError('minlength')">Minimum of 3 characters required</small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <label for="lname" type="text" class="form-label ms-2">Last Name</label>
+            <input type="text" class="form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="lname" placeholder="Bharatha">
+            <div class="text-danger ms-2" *ngIf="sellDetails.get('lname')?.touched&&sellDetails.get('lname')?.invalid">
+              <small *ngIf="sellDetails.get('lname')?.hasError('required')">Last Name is required</small>
+              <small *ngIf="sellDetails.get('lname')?.hasError('minlength')">Minimum of 3 characters required</small>
+            </div>
+          </div>
+
+        </div>
+        <div class="row form-group mt-4">
+          <div class="col-lg-6">
+            <label for="hNo" type="text" class="form-label ms-2">House No</label>
+            <input type="text" class="form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="hNo" placeholder="XXXX-XX">
+            <div class="text-danger ms-2" *ngIf="sellDetails.get('hNo')?.touched&&sellDetails.get('hNo')?.invalid">
+              <small *ngIf="sellDetails.get('hNo')?.hasError('required')">Gmail is required</small>
+              <small *ngIf="sellDetails.get('hNo')?.hasError('minlength')">Minimum of 3 characters required</small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <label for="district" type="text" class="form-label ms-2">City </label>
+            <input type="text" class="form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="district" placeholder="Enter Your City">
+            <div class="text-danger ms-2"
+              *ngIf="sellDetails.get('district')?.touched&&sellDetails.get('district')?.invalid">
+              <small *ngIf="sellDetails.get('district')?.hasError('required')">District is required</small>
+              <small *ngIf="sellDetails.get('district')?.hasError('minlength')">Minimum of 3 characters required</small>
+            </div>
+          </div>
+        </div>
+        <div class="row form-group mt-4">
+          <div class="col-lg-6">
+            <label for="state" type="text" class="form-label ms-2">State</label>
+            <input type="text" class="form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="state" placeholder="Enter Your State">
+            <div class="text-danger ms-2" *ngIf="sellDetails.get('state')?.touched&&sellDetails.get('state')?.invalid">
+              <small *ngIf="sellDetails.get('state')?.hasError('required')">Enter your State</small>
+              <small *ngIf="sellDetails.get('state')?.hasError('minlength')">Minimum of 3 characters required</small>
+            </div>
+          </div>
+          <div class="col-lg-6 ">
+            <label for="gmail" type="text" class="form-label ms-2">Gmail</label>
+            <input type="gmail" class="form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="gmail" placeholder="lavanbharatha25@gmail.com">
+            <div class="text-danger ms-2" *ngIf="sellDetails.get('gmail')?.touched&&sellDetails.get('gmail')?.invalid">
+              <small *ngIf="sellDetails.get('gmail')?.hasError('required')">Gmail is required</small>
+              gmail
+            </div>
+          </div>
+        </div>
+        <div class="row form-group mt-4">
+          <div class="col-lg-6">
+            <label for="phoneNumber" type="text" class="form-label ms-2">Phone Number</label>
+            <input type="number" class="form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="phoneNumber" placeholder="Enter Your Mobile Number">
+            <div class="text-danger ms-2"
+              *ngIf="sellDetails.get('phoneNumber')?.touched&&sellDetails.get('phoneNumber')?.invalid">
+              <small *ngIf="sellDetails.get('phoneNumber')?.hasError('required')">Mobile Number is required</small>
+              <small *ngIf="sellDetails.get('phoneNumber')?.hasError('minLength')">Mobile number should be 10
+                digits</small>
+              <small *ngIf="sellDetails.get('phoneNumber')?.hasError('maxlength')">Mobile number should be 10
+                digits</small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <label for="vehAge" type="text" class="form-label ms-2">Vehicle Age</label>
+            <input type="number" class="form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="vehAge" placeholder="XXXX-XX">
+            <div class="text-danger ms-2"
+              *ngIf="sellDetails.get('vehAge')?.touched&&sellDetails.get('vehAge')?.invalid">
+              <small *ngIf="sellDetails.get('vehAge')?.hasError('required')">Enter Vehicle age</small>
+              
+            </div>
+          </div>
+        </div>
+        <div class="row form-group mt-4">
+          <div class="col-lg-6">
+            <label for="price" type="text" class="form-label ms-2">Price</label>
+            <input type="number" class="form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="price" placeholder="Enter selling price of your car">
+            <div class="text-danger ms-2" *ngIf="sellDetails.get('price')?.touched&&sellDetails.get('price')?.invalid">
+              <small *ngIf="sellDetails.get('price')?.hasError('required')">Enter your Car Price ( Expected )</small>
+
+            </div>
+          </div>
+          <div class="col-lg-6 ">
+            <label for="file" type="text" class="form-label ms-2">Upload Car Images</label>
+            <input type="file" class="form-control inputWidth bg-secondary  border-secondary text-dark ms-2"
+              formControlName="prfileice" placeholder="Lavan">
+            <div>
+              <small class="text-secondary ms-2">Upload atleast 4 car images</small>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 text-center">
+          <button class="btn btn-success" data-bs-dismiss="modal"><small>Confirm Details</small></button>
+        </div>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>

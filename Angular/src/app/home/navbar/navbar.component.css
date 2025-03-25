@@ -1,0 +1,124 @@
+.navbar-brand {
+  font-size: 30px;
+  font-family: "Times New Roman", "Georgia", "Cambria", "Palatino Linotype", serif;
+  font-style: italic;
+  color: red;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-family: "Times New Roman", "Georgia", "Cambria", "Palatino Linotype", serif;
+  font-style: italic;
+}
+
+.linkBorder {
+  position: relative;
+  text-decoration: none;
+  color: #000;
+  padding-bottom: 0px;
+}
+
+.linkBorder::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  height: 1.7px;
+  width: 0%;
+  background-color: red;
+  transition: width 0.4s ease-in-out;
+}
+
+.linkBorder:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.linkBorder:hover::after {
+  width: 80px;
+}
+
+.loginLink:hover {
+  color: red;
+}
+
+.nav-link.active {
+  color: red;
+}
+
+.navbar {
+  z-index: 1030;
+  padding-bottom: 10px;
+  background-color: white;
+
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.loginLink {
+  color: black;
+}
+
+.navbar {
+  z-index: 1041;
+}
+
+
+
+
+
+@media (max-width:768px) {
+  .navbar-collapse {
+    position: absolute;
+    align-items: right;
+
+    justify-content: flex-start;
+    top: 0px;
+    right: 0px;
+    height: 100vh;
+    background-color: #041E42;
+    padding-left: 30px;
+    padding-right: 30px;
+    animation: slideInFromRight 0.50s ease-in;
+  }
+
+
+  .nav-link {
+    color: aliceblue;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .navbar-toggler {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    border-radius: 50%;
+    padding: 5px;
+    border-color: white;
+  }
+
+  .navbar-toggler:hover {
+    background-color: grey;
+  }
+}
+
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-around;
+}
+

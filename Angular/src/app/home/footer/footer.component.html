@@ -1,0 +1,51 @@
+<div class="blank"> </div>
+<div class="container-fluid overflow-hidden">
+  <div class="row flex-nowrap scroll-container">
+    <div *ngFor="let image of carLogos;index as i" class="col-auto">
+      <img [src]="image" [alt]="image.alt" class="img-fluid" style="height: 50px; margin-right: 15px;" />
+    </div>
+    <div *ngFor="let image of carLogos;index as i" class="col-auto">
+      <img [src]="image" [alt]="image.alt" class="img-fluid" style="height: 50px; margin-right: 15px;" />
+    </div>
+  </div>
+
+  <div class="blank "> </div>
+  <div class="text-overlay">
+    <div class="overlay"></div>
+
+    <div class="row main content">
+      <div class="col-4 branch">
+        <div class="row d-flex flex-column">
+          <a class="MainAnchor">General Company Information</a>
+          <a>About Us</a>
+          <a>Contact Us</a>
+          <a>Careers</a>
+          <a>Press & Media</a>
+          <a>Blog & News</a>
+          <a>User Reviews & Testimonials</a>
+        </div>
+      </div>
+      <div class="col-4 branch">
+        <div class="row d-flex flex-column">
+          <a class="MainAnchor">Car Buying & Selling</a>
+          <a>Sell Your Car</a>
+          <a>Car Financing Options</a>
+          <a>Car Buying Guide</a>
+          <a>Rental Policies</a>
+          <a>Rental Agreement</a>
+          <a>Refund & Cancellation Policy</a>
+        </div>
+      </div>
+      <div class="col-4 branch">
+        <div class="row d-flex flex-column">
+          <a class="MainAnchor">Services & Customer Support</a>
+          <a>FAQs</a>
+          <a>Customer Support </a>
+          <a>Vehicle Inspection Services</a>
+          <a>Extended Warranty Options</a>
+          <a>Roadside Assistance</a>
+          <a>Certified Pre-Owned</a>
+        </div>
+      </div>
+    </div>
+  </div>

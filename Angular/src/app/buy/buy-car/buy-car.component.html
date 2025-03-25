@@ -1,0 +1,20 @@
+<div class="mt-4">
+  <div class="container">
+    <div *ngFor="let car of buyCars" class="mx-auto">
+      <div class="card mb-4 " [routerLink]="['/buy/buyDetails',car.carId]" routerLinkActive="active">
+        <img [src]="car.carImages[0]" class="card-img-top img-fluid" [alt]="car.name">
+        <div class="card-body text-dark">
+          <div class="text-center">
+            <button class="btn m-0 btnPrice">₹ {{ car.carPrice }}</button>
+          </div>
+          <div class="card-text text-center mt-2">
+            <button class="btn btnPurpose">{{car.carPurpose}}</button>
+          </div>
+        </div>
+        <div class="card-footer">
+          <h5 class="card-title">{{ car.carBrand }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

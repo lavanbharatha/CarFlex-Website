@@ -1,0 +1,152 @@
+.container {
+    margin: 70px 50px 100px 50px;
+
+}
+
+.container2 {
+    margin-left: 30px;
+}
+
+.mainImage {
+    border-radius: 20px;
+    height: 100%;
+  
+}
+.main{
+    position: relative;
+}
+
+.sideImage {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+.main {
+    position: relative;
+}
+
+.photosButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px 10px 15px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 0px 10px 0px 10px;
+    font-size: 30px;
+
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%);
+    height: auto;
+    width: 5%;
+    height: 10%;
+    background-color: red;
+    padding: 0px 0px 0px 0px;
+    opacity: 1;
+
+}
+
+.carousel-control-next-icon {
+    color: black;
+}
+
+.carousel-indicators.active {
+    background-color: red;
+}
+
+.openImage,
+.openImageModal {
+    border-radius: 25px;
+}
+
+.carousel-item img {
+    border-radius: 25px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal {
+    backdrop-filter: blur(20px);
+}
+
+.modal-content {
+    border-radius: 25px;
+}
+
+.features {
+    margin: 50px 200px 20px 0px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.btnWidth {
+    height: 50px;
+    background-color: #E8E9EB;
+    font-size: 25px;
+    width: 250px;
+    color: black;
+    margin: 20px 20px 20px 20px;
+}
+
+.btnCrud {
+    height: 50px;
+    font-size: 25px;
+    width: 250px;
+    color: black;
+    margin-left: 320px;
+
+}
+
+.featureLogo {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.card-body {
+    margin-top: 30px 30px 30px 30px;
+}
+
+.card-custom-shadow {
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+    border-color: #E8E9EB;
+}
+
+.grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 250px));
+}
+
+.icon {
+    margin: 30px 0px 30px 0px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.btnPurpose {
+    width: 150px;
+}
+
+.btnPurpose:hover {
+    background-color: green;
+    border-color: green;
+}
