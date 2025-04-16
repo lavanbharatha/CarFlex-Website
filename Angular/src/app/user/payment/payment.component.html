@@ -1,0 +1,47 @@
+<div class="payment-container" style="margin-top: 100px;">
+  <h2 class="text-center header" style="font-size: 20px;"
+  >Select Your Payment Method</h2>
+  
+  <div class="payment-card ">
+    <form >
+      <!-- UPI Payment Option -->
+      <div class="payment-option">
+        <input type="radio" id="upi" name="paymentMethod" value="upi">
+        <label for="upi">UPI Payment</label>
+        <div class="payment-details" id="upiDetails" style="display: none;">
+          <label for="upiId" class="form-label">Enter UPI ID</label>
+          <input type="text" id="upiId" class="form-control" placeholder="example@upi">
+        </div>
+      </div>
+
+      <!-- Credit Card Payment Option -->
+      <div class="payment-option">
+        <input type="radio" id="creditCard" name="paymentMethod" value="creditCard">
+        <label for="creditCard">Credit Card</label>
+        <div class="payment-details" id="creditCardDetails" style="display: none;">
+          <label for="cardNumber" class="form-label">Card Number</label>
+          <input type="text" id="cardNumber" class="form-control" placeholder="1234 5678 9012 3456">
+
+          <label for="expiryDate" class="form-label mt-3">Expiry Date</label>
+          <input type="text" id="expiryDate" class="form-control" placeholder="MM/YY">
+
+          <label for="cvv" class="form-label mt-3">CVV</label>
+          <input type="password" id="cvv" class="form-control" placeholder="123">
+        </div>
+      </div>
+
+      <!-- PayPal Payment Option -->
+      <div class="payment-option">
+        <input type="radio" id="paypal" name="paymentMethod" value="paypal">
+        <label for="paypal">PayPal</label>
+        <div class="payment-details" id="paypalDetails" style="display: none;">
+          <p>You'll be redirected to PayPal to complete your payment.</p>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary mt-4" style="width: 200px; text-align: center;">Proceed to Pay</button>
+      </div>
+    </form>
+  </div>
+</div>
+

@@ -14,7 +14,7 @@
       <h5 class="btn btnWidth">{{car.carBrand}}</h5>
     </div>
     <div><a class="btn btnWidth">Price : ₹ {{car.carPrice}}</a></div>
-    <div><Button class="btn btnWidth btnPurpose">{{car.carPurpose}}</Button></div>
+    <div><Button class="btn btnWidth btnPurpose" (click)="goToLogin()">{{car.carPurpose}}</Button></div>
 
   </div>
   <div><a class="btn btnCrud btn-primary" (click)="navigateToCarList()">see all car details</a></div>

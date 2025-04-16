@@ -4,14 +4,12 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   align-items: center;
   justify-content: center;
-
 }
 
 .card {
   border-radius: 1rem;
   margin: 1.8rem 1.8rem 1.8rem 1.8rem;
   background-color: #C0C5CC;
-
 }
 
 img {

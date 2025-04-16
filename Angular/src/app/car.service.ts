@@ -19,7 +19,7 @@ export class CarService {
 
   }
   getItems(): void {
-    this.http.get<Car[]>(this.url).subscribe(
+    this.http.get<Car[]>(`${this.url}/getAll`).subscribe(
       data => this.carsSubject.next(data)
     )
   }

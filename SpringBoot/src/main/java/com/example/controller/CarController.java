@@ -31,7 +31,7 @@ public class CarController {
 		return ResponseEntity.ok(savedCar);
 	}
 
-	@GetMapping
+	@GetMapping("/getAll")
 	public List<CarEntity> getCars() {
 		return carService.getAllCars();
 	}

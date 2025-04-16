@@ -1,40 +1,56 @@
-<div class="modal opacity-100 fade modal-background " [ngClass]="{ 'show': showLoginForm }"
+<div class="modal opacity-100 fade modal-background" [ngClass]="{ 'show': showLoginForm }"
   [ngStyle]="{ 'display': showLoginForm ? 'block' : 'none' }" data-bs-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered " tyle="border-radius: 20px;">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" style="border-radius: 20px;">
-      <div class="modal-header  border-bottom border-dark ">
+      <div class="modal-header border-bottom border-dark">
         <h3 class="text-light text-center" style="text-align: center;">
           Welcome back to CarFlex
         </h3>
       </div>
       <div class="modal-body text-light" [formGroup]="fg">
+        <!-- Success message display -->
+        <div *ngIf="successMessage" class="alert alert-success">
+          {{ successMessage }}
+        </div>
+
+        <!-- Error message display -->
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+
         <div class="row form-group">
-          <label for="email" type="email" class="form-label">Email</label>
-          <input type="email" class="form-control  bg-secondary  border-secondary text-dark ms-2"
-            formControlName="gmail" placeholder="lavanbharatha25@gmail.com">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control bg-secondary border-secondary text-dark ms-2"
+            formControlName="username" placeholder="Enter your username">
         </div>
-        <div class="text-danger" *ngIf="fg.get('gmail')?.touched&&fg.get('gmail')?.invalid">
-          <small *ngIf="fg.get('gmail')?.hasError('required')">Gmail is required</small>
-          <small *ngIf="fg.get('gmail')?.hasError('email')">Enter correct gmail</small>
-          <small *ngIf="fg.get('gmail')?.hasError('minlength')">Minimum of 8 characters required</small>
+        <div class="text-danger" *ngIf="fg.get('username')?.touched && fg.get('username')?.invalid">
+          <small *ngIf="fg.get('username')?.hasError('required')">Username is required</small>
+          <small *ngIf="fg.get('username')?.hasError('minlength')">Minimum of 4 characters required</small>
         </div>
+
         <div class="row mt-3 form-group">
           <label for="Password" class="form-label text-light">Password</label>
-          <input type="password" placeholder="Enter Your Gmail password"
-            class="form-control bg-secondary  border-secondary text-dark ms-2" formControlName="password">
+          <input type="password" placeholder="Enter your password"
+            class="form-control bg-secondary border-secondary text-dark ms-2" formControlName="password">
         </div>
-        <div class="text-danger" *ngIf="fg.get('password')?.touched&&fg.get('password')?.invalid">
-          <small *ngIf="fg.get('password')?.hasError('required')">password is required</small>
-          <small *ngIf="fg.get('password')?.hasError('minlength')">Minimum of 8 characters required</small>
+        <div class="text-danger" *ngIf="fg.get('password')?.touched && fg.get('password')?.invalid">
+          <small *ngIf="fg.get('password')?.hasError('required')">Password is required</small>
+          <small *ngIf="fg.get('password')?.hasError('minlength')">Minimum of 4 characters required</small>
         </div>
 
         <div class="row mt-3">
           <div class="col-2">
-            <button class="btn btn-success"><small>Login</small></button>
+            <button class="btn btn-success" (click)="onLogin()" [disabled]="isLoading">
+              <span *ngIf="!isLoading"><small>Login</small></span>
+              <span *ngIf="isLoading">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <small>Loading...</small>
+              </span>
+            </button>
           </div>
           <div class="col-2 ms-auto me-3">
             <button class="btn btn-danger" (click)="navigateToHome()" data-bs-dismiss="modal"
-              type="button"><small>Cancel</small></button>
+              type="button" [disabled]="isLoading"><small>Cancel</small></button>
           </div>
         </div>
       </div>

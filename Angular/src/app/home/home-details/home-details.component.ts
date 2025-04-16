@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarService } from '../../car.service';
 import { data } from 'jquery';
+import { AuthenticationService } from '../../authentication.service';
 
 
 
@@ -28,6 +29,7 @@ export class HomeDetailsComponent implements OnInit {
     private router: Router,
     private actRoute: ActivatedRoute,
     private carService: CarService,
+    private authService: AuthenticationService
 
   ) { }
   ngOnInit(): void {
@@ -58,6 +60,27 @@ export class HomeDetailsComponent implements OnInit {
   }
   navigateToCarList() {
     this.router.navigate(['/home/carList'])
+  }
+  
+  goToLogin() {
+    if (!this.authService.isTokenPresent()) {
+      this.router.navigate(['/login'], { queryParams: { toLogin: true } });
+         }
+    this.authService.verifyToken().subscribe({
+      next: (res) => {
+        this.router.navigate(['/login/payment']);
+      },
+      error: (err) => {
+        if (err.status === 401) {
+          // Token expired or invalid
+          console.log('Session expired. Please login again.');
+        } else {
+          // Other errors (like network issues, etc.)
+          alert('An error occurred. Please try again.');
+        }
+        this.router.navigate(['/login'], { queryParams: { toLogin: true } });
+      }
+    });
   }
 
 }
