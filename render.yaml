@@ -1,5 +1,5 @@
 services:
-  - type: pserv  # ✅ This is for Spring Boot (Java)
+  - type: pserv  # ✅ Spring Boot backend
     name: springboot-app
     rootDir: SpringBoot
     buildCommand: ./mvnw clean install
@@ -13,12 +13,12 @@ services:
     autoDeploy: yes
     plan: free
 
-  - type: web
+  - type: web  # ✅ Angular frontend
     name: angular-app
     runtime: static
     rootDir: Angular
     buildCommand: npm install && npm run build -- --configuration=production
-    staticPublishPath: dist/Flex
+    staticPublishPath: dist/Flex  # 👈 make sure this matches your Angular build output
     envVars:
       - key: NODE_ENV
         value: production
