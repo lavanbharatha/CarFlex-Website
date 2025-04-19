@@ -1,33 +1,33 @@
 services:
-  # Spring Boot Backend Service (corrected type and added critical Java config)
-  - type: web  # ✅ "web" not "pserv" - required for Java apps
+  # Spring Boot Backend Service
+  - type: web  # Correct type for Java apps
     name: springboot-app
+    runtime: java  # Explicitly declare runtime
     rootDir: SpringBoot
     buildCommand: ./mvnw clean install
     startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=$PORT
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
-      - key: RENDER_INFER_RUNTIME  # ✅ Forces Java detection
-        value: java
-      - key: SERVER_PORT  # ✅ Double-binding for Spring Boot
+      - key: SERVER_PORT
         value: $PORT
-      - key: NODE_ENV  # ✅ Required for Angular build via Maven
+      - key: NODE_ENV
         value: production
     plan: free
     autoDeploy: yes
     branch: main
 
-  # Angular Frontend Service (optimized static config)
-  - type: static  # ✅ "static" not "web" for SPAs
+  # Angular Frontend Service
+  - type: web  # Use 'web' for frontends too
     name: angular-app
+    runtime: node  # Node.js environment
     rootDir: Angular
     buildCommand: npm install && npm run build -- --configuration=production
-    publishPath: dist/Flex  # ✅ "publishPath" instead of "staticPublishPath"
+    staticPublishPath: dist/Flex  # Special key for static sites
     envVars:
       - key: NODE_ENV
         value: production
-      - key: VITE_API_BASE_URL  # ✅ Add your API endpoint if using Vite
+      - key: VITE_API_BASE_URL  # Example environment variable
         value: https://springboot-app.onrender.com
     plan: free
     autoDeploy: yes
