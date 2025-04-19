@@ -2,7 +2,7 @@ services:
   # Spring Boot Backend Service
   - type: web
     name: springboot-app
-    env: java  # The correct way to specify Java
+    env: java  # Correct declaration for Java apps
     rootDir: SpringBoot
     buildCommand: ./mvnw clean install
     startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=$PORT
@@ -12,7 +12,7 @@ services:
       - key: SERVER_PORT
         value: $PORT
       - key: RENDER_FORCE_JAVA
-        value: "true"
+        value: "true"  # Ensures Java is used
     plan: free
     autoDeploy: yes
     branch: main
@@ -25,7 +25,6 @@ services:
     buildCommand: |
       npm install
       npm run build -- --configuration=production
-      npx serve -s dist/Flex -l 3000 >/dev/null 2>&1 &
     startCommand: npx serve -s dist/Flex -p $PORT
     envVars:
       - key: NODE_ENV
