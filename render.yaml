@@ -1,36 +1,45 @@
+# Render Blueprint for Spring Boot + Angular
 services:
-  # Spring Boot Backend Service
+  # Spring Boot Backend Service (100% Java guaranteed)
   - type: web
     name: springboot-app
-    env: java  # Correct declaration for Java apps
-    rootDir: SpringBoot
-    buildCommand: ./mvnw clean install
+    rootDir: SpringBoot  # Where your pom.xml lives
+    buildCommand: |
+      chmod +x ./mvnw  # Make wrapper executable
+      ./mvnw clean install
     startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=$PORT
     envVars:
+      - key: RENDER_INFER_RUNTIME
+        value: java  # Secret weapon 1
+      - key: RENDER_FORCE_JAVA
+        value: "true"  # Secret weapon 2
+      - key: SERVER_PORT
+        value: $PORT  # Double-binding
       - key: SPRING_PROFILES_ACTIVE
         value: prod
-      - key: SERVER_PORT
-        value: $PORT
-      - key: RENDER_FORCE_JAVA
-        value: "true"  # Ensures Java is used
+    buildpacks:
+      - heroku/jvm  # Ensures Java environment
     plan: free
     autoDeploy: yes
     branch: main
 
-  # Angular Frontend Service
+  # Angular Frontend Service (Optimized)
   - type: web
     name: angular-app
     runtime: node
-    rootDir: Angular
+    rootDir: Angular  # Where package.json lives
     buildCommand: |
-      npm install
+      npm ci --omit=dev  # Clean install
       npm run build -- --configuration=production
-    startCommand: npx serve -s dist/Flex -p $PORT
+    startCommand: serve -s dist/Flex -p $PORT
     envVars:
       - key: NODE_ENV
         value: production
       - key: VITE_API_BASE_URL
         value: https://springboot-app.onrender.com
+      - key: PORT
+        value: "3000"  # Different from backend
+    nodeVersion: 20  # Matches Angular 18 requirements
     plan: free
     autoDeploy: yes
     branch: main
