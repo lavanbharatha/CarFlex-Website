@@ -36,8 +36,8 @@ services:
       - key: VITE_API_BASE_URL  # Update with your backend URL
         value: https://springboot-app.onrender.com 
       - key: PORT
-        value: "3000"  # Must differ from backend port
-       - key: NODE_VERSION
+        value: "4200"  # Must differ from backend port
+      - key: NODE_VERSION
         value: "22.11"
     plan: free
     autoDeploy: yes
