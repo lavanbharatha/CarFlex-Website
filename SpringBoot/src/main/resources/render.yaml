@@ -1,11 +1,20 @@
 services:
   - type: web
     name: springboot-app
-    env: java
-    buildCommand: './mvnw clean install'  # or 'mvn clean install'
-    startCommand: 'java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar'
+    runtime: java  # Correct key (not 'env')
+    buildCommand: ./mvnw clean install  # Quotes not needed
+    startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
+      - key: NODE_ENV
+        value: production  # Required for Angular production build
+      # Add database config if needed:
+      # - key: SPRING_DATASOURCE_URL
+      #   value: jdbc:postgresql://your-render-db-url
     branch: main
-    autoDeploy: true
+    autoDeploy: yes  # Render prefers 'yes' over true
+    plan: free  # Explicitly set plan (upgrade if builds fail)
+    # Advanced options for Java/Node.js:
+    nodeVersion: 20  # Ensures Node.js 20 for Angular build
+    javaVersion: 21  # Matches your pom.xml
