@@ -1,7 +1,7 @@
 services:
-  - type: web
+  - type: pserv  # ✅ This is for Spring Boot (Java)
     name: springboot-app
-    rootDir: SpringBoot  # Folder where your pom.xml is
+    rootDir: SpringBoot
     buildCommand: ./mvnw clean install
     startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=$PORT
     envVars:
@@ -15,10 +15,10 @@ services:
 
   - type: web
     name: angular-app
-    runtime: static  # Angular app is static
+    runtime: static
     rootDir: Angular
     buildCommand: npm install && npm run build -- --configuration=production
-    staticPublishPath: dist/<your-angular-project-name>  # 👈 Replace this!
+    staticPublishPath: dist/Flex
     envVars:
       - key: NODE_ENV
         value: production
