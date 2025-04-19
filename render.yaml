@@ -1,18 +1,28 @@
 services:
   - type: web
     name: springboot-app
-    runtime: java  # Forces Java environment
-    rootDir: SpringBoot  # Correct directory where pom.xml exists
+    runtime: java
+    rootDir: SpringBoot  # Folder containing pom.xml
     buildCommand: ./mvnw clean install
-    startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=${PORT}  # Critical for Render
+    startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=$PORT
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
-      - key: NODE_ENV
-        value: production  # Required for Angular production build
-      - key: SERVER_PORT
-        value: ${PORT}  # Render provides dynamic port
     branch: main
     autoDeploy: yes
     plan: free
     javaVersion: 21
+
+  - type: web
+    name: angular-app
+    runtime: node
+    rootDir: Angular  # Folder containing angular.json
+    buildCommand: npm install && npm run build -- --configuration=production
+    staticPublishPath: dist/Flex  # 👈 Replace this
+    envVars:
+      - key: NODE_ENV
+        value: production
+    branch: main
+    autoDeploy: yes
+    plan: free
+    nodeVersion: 20
