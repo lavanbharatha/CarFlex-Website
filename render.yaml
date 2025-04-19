@@ -37,7 +37,7 @@ services:
         value: https://springboot-app.onrender.com 
       - key: PORT
         value: "3000"  # Must differ from backend port
-    nodeVersion: 20  # Matches Angular 18 requirements
+    nodeVersion: 22  # Matches Angular 18 requirements
     plan: free
     autoDeploy: yes
     branch: main
