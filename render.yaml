@@ -1,8 +1,8 @@
 services:
-  # Spring Boot Backend Service
-  - type: web  # Correct type for Java apps
+  # Spring Boot Backend Service (Web Service)
+  - type: web
     name: springboot-app
-    runtime: java  # Explicitly declare runtime
+    env: java  # Render's legacy Java declaration
     rootDir: SpringBoot
     buildCommand: ./mvnw clean install
     startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=$PORT
@@ -11,23 +11,22 @@ services:
         value: prod
       - key: SERVER_PORT
         value: $PORT
-      - key: NODE_ENV
-        value: production
+      - key: RENDER_FORCE_JAVA
+        value: "true"  # Nuclear option for Java
     plan: free
     autoDeploy: yes
     branch: main
 
-  # Angular Frontend Service
-  - type: web  # Use 'web' for frontends too
+  # Angular Frontend Service (Static Site)
+  - type: static  # Proper static site declaration
     name: angular-app
-    runtime: node  # Node.js environment
     rootDir: Angular
     buildCommand: npm install && npm run build -- --configuration=production
-    staticPublishPath: dist/Flex  # Special key for static sites
+    publishPath: dist/Flex  # Correct key for static
     envVars:
       - key: NODE_ENV
         value: production
-      - key: VITE_API_BASE_URL  # Example environment variable
+      - key: VITE_API_BASE_URL
         value: https://springboot-app.onrender.com
     plan: free
     autoDeploy: yes
