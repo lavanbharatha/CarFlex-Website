@@ -18,7 +18,7 @@ services:
     runtime: static
     rootDir: Angular
     buildCommand: npm install && npm run build -- --configuration=production
-    staticPublishPath: dist/<your-angular-project-name>  # 👈 Replace this
+    staticPublishPath: dist/Flex  # 👈 Replace this
     envVars:
       - key: NODE_ENV
         value: production
