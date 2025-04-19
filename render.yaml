@@ -1,48 +1,43 @@
 services:
-  # Spring Boot Service (Blueprint-Compatible)
+  # Spring Boot Backend Service (Blueprint Mode)
   - type: web
     name: springboot-app
-    # NO runtime/env declaration - this is intentional
-    rootDir: SpringBoot
+    rootDir: SpringBoot  # Must contain pom.xml
     buildCommand: |
       chmod +x ./mvnw
-      ./mvnw clean install -DskipTests
-      # Create marker file to force Java detection
-      echo "java" > .render-runtime
-    startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=$PORT
+      ./mvnw clean install -DskipTests -Dmaven.test.skip=true
+      # Create Render detection file
+      mkdir -p .render
+      echo '{"runtime":"docker"}' > .render/runtime.json
+    startCommand: java -Xmx512m -Dfile.encoding=UTF-8 -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=$PORT
     envVars:
-      - key: RENDER_INFER_RUNTIME
-        value: java
-      - key: RENDER_FORCE_JAVA
-        value: "true"
       - key: SERVER_PORT
         value: $PORT
       - key: SPRING_PROFILES_ACTIVE
         value: prod
-      - key: JAVA_OPTS
+      - key: JAVA_TOOL_OPTIONS  # Universal JVM config
         value: "-Xmx512m -Dfile.encoding=UTF-8"
-      - key: MAVEN_OPTS
-        value: "-Djava.version=21"
-    plan: free
+    plan: free  # Upgrade to 'starter' if memory issues occur
     autoDeploy: yes
     branch: main
 
-  # Angular Service (unchanged)
+  # Angular Frontend Service
   - type: web
     name: angular-app
     runtime: node
-    rootDir: Angular
+    rootDir: Angular  # Must contain package.json
     buildCommand: |
-      npm install
+      npm ci --omit=dev  # Clean install (no devDependencies)
       npm run build -- --configuration=production
-    startCommand: npx serve -s dist/Flex -p $PORT
+    startCommand: npx serve -s dist/Flex -l $PORT
     envVars:
       - key: NODE_ENV
         value: production
-      - key: VITE_API_BASE_URL
-        value: https://springboot-app.onrender.com
-      - key: NODE_VERSION
-        value: "20"
+      - key: VITE_API_BASE_URL  # Update with your backend URL
+        value: https://springboot-app.onrender.com 
+      - key: PORT
+        value: "3000"  # Must differ from backend port
+    nodeVersion: 20  # Matches Angular 18 requirements
     plan: free
     autoDeploy: yes
     branch: main
