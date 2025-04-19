@@ -1,8 +1,29 @@
 services:
-  # Spring Boot Backend Service
+  # Angular Frontend Service (Production)
+  - type: web
+    name: angular-app
+    runtime: node
+    rootDir: Angular
+    buildCommand: |
+      npm install
+      npm run build -- --configuration=production
+      npm install -g serve  # Ensure serve is available globally
+    startCommand: serve -s dist/Flex -p $PORT
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: VITE_API_BASE_URL  # Example environment variable
+        value: https://your-backend-service.onrender.com
+    plan: free
+    autoDeploy: yes
+    branch: main
+    healthCheckPath: /  # Recommended for web services
+    nodeVersion: 20  # Matches your Angular 18 requirements
+
+  # Optional: Spring Boot Backend Service (if needed)
   - type: web
     name: springboot-app
-    env: java  # Correct declaration for Java apps
+    env: java  # Correct Java declaration for Render
     rootDir: SpringBoot
     buildCommand: ./mvnw clean install
     startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=$PORT
@@ -12,25 +33,8 @@ services:
       - key: SERVER_PORT
         value: $PORT
       - key: RENDER_FORCE_JAVA
-        value: "true"  # Ensures Java is used
+        value: "true"
     plan: free
     autoDeploy: yes
     branch: main
-
-  # Angular Frontend Service
-  - type: web
-    name: angular-app
-    runtime: node
-    rootDir: Angular
-    buildCommand: |
-      npm install
-      npm run build -- --configuration=production
-    startCommand: npx serve -s dist/Flex -p $PORT
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: VITE_API_BASE_URL
-        value: https://springboot-app.onrender.com
-    plan: free
-    autoDeploy: yes
-    branch: main
+    javaVersion: 21
