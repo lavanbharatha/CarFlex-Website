@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: springboot-app
+    env: java
+    buildCommand: './mvnw clean install'  # or 'mvn clean install'
+    startCommand: 'java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar'
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+    branch: main
+    autoDeploy: true
