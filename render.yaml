@@ -1,7 +1,6 @@
 services:
   - type: web
     name: springboot-app
-    runtime: java
     rootDir: SpringBoot
     buildCommand: ./mvnw clean install
     startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=$PORT
@@ -16,10 +15,10 @@ services:
 
   - type: web
     name: angular-app
-    runtime: node
+    runtime: static
     rootDir: Angular
     buildCommand: npm install && npm run build -- --configuration=production
-    staticPublishPath: dist/Flex  # 👈 Replace this
+    staticPublishPath: dist/<your-angular-project-name>  # 👈 Replace this
     envVars:
       - key: NODE_ENV
         value: production
