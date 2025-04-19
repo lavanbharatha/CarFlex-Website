@@ -8,12 +8,16 @@ services:
       ./mvnw clean install
     startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=$PORT
     envVars:
-      - key: SPRING_PROFILES_ACTIVE
-        value: prod
+      - key: RENDER_INFER_RUNTIME  # Magic bullet 1
+        value: java
+      - key: RENDER_FORCE_JAVA    # Magic bullet 2
+        value: "true"
       - key: SERVER_PORT
         value: $PORT
-      - key: RENDER_FORCE_JAVA
-        value: "true"  # Optional, but helps Render recognize Java
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: JAVA_OPTS
+        value: "-Xmx512m"  # Optional, but helps Render recognize Java
     plan: free
     autoDeploy: yes
     branch: main
