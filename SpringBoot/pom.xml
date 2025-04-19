@@ -32,6 +32,8 @@
         <npm.version>10.5.0</npm.version>
         <frontend.src.dir>${project.basedir}/src/main/webapp</frontend.src.dir>
         <frontend.build.dir>${project.build.directory}/classes/static</frontend.build.dir>
+		  <maven.compiler.source>21</maven.compiler.source>
+  <maven.compiler.target>21</maven.compiler.target>
     </properties>
     <dependencies>
         <dependency>
