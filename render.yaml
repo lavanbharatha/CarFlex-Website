@@ -1,13 +1,17 @@
 services:
   - type: web
     name: springboot-app
-    runtime: java
-    rootDir: SpringBoot  # 👈 Points Render to your backend
+    runtime: java  # Forces Java environment
+    rootDir: SpringBoot  # Correct directory where pom.xml exists
     buildCommand: ./mvnw clean install
-    startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar
+    startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=${PORT}  # Critical for Render
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
+      - key: NODE_ENV
+        value: production  # Required for Angular production build
+      - key: SERVER_PORT
+        value: ${PORT}  # Render provides dynamic port
     branch: main
     autoDeploy: yes
     plan: free
