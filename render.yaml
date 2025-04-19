@@ -1,5 +1,6 @@
 services:
-  - type: pserv  # ✅ Spring Boot backend
+  # Spring Boot Backend Service (corrected type and added critical Java config)
+  - type: web  # ✅ "web" not "pserv" - required for Java apps
     name: springboot-app
     rootDir: SpringBoot
     buildCommand: ./mvnw clean install
@@ -7,23 +8,27 @@ services:
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
-      - key: RENDER_BUILD_JAVA_VERSION
-        value: 21
-    branch: main
-    autoDeploy: yes
+      - key: RENDER_INFER_RUNTIME  # ✅ Forces Java detection
+        value: java
+      - key: SERVER_PORT  # ✅ Double-binding for Spring Boot
+        value: $PORT
+      - key: NODE_ENV  # ✅ Required for Angular build via Maven
+        value: production
     plan: free
+    autoDeploy: yes
+    branch: main
 
-  - type: web  # ✅ Angular frontend
+  # Angular Frontend Service (optimized static config)
+  - type: static  # ✅ "static" not "web" for SPAs
     name: angular-app
-    runtime: static
     rootDir: Angular
     buildCommand: npm install && npm run build -- --configuration=production
-    staticPublishPath: dist/Flex  # 👈 make sure this matches your Angular build output
+    publishPath: dist/Flex  # ✅ "publishPath" instead of "staticPublishPath"
     envVars:
       - key: NODE_ENV
         value: production
-      - key: RENDER_BUILD_NODE_VERSION
-        value: 20
-    branch: main
-    autoDeploy: yes
+      - key: VITE_API_BASE_URL  # ✅ Add your API endpoint if using Vite
+        value: https://springboot-app.onrender.com
     plan: free
+    autoDeploy: yes
+    branch: main
