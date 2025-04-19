@@ -1,6 +1,10 @@
 {
   "name": "flex",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=20.0.0 <21.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +13,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:Flex": "node dist/flex/server/server.mjs",
-    "serve:static": "serve -s dist/Flex -p $PORT"
+    "serve:static": "serve -s dist/Flex -p $PORT",
+    "render-build": "npm install && npm run build"
   },
   "private": true,
   "dependencies": {
@@ -30,7 +35,7 @@
     "jwt-decode": "^4.0.0",
     "process": "^0.11.10",
     "rxjs": "~7.8.0",
-    "serve": "^14.2.0",  
+    "serve": "^14.2.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },
