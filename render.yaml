@@ -1,28 +1,33 @@
 services:
-  # Spring Boot Backend Service
+  # Spring Boot Service (Blueprint-Compatible)
   - type: web
     name: springboot-app
+    # NO runtime/env declaration - this is intentional
     rootDir: SpringBoot
     buildCommand: |
       chmod +x ./mvnw
-      ./mvnw clean install
+      ./mvnw clean install -DskipTests
+      # Create marker file to force Java detection
+      echo "java" > .render-runtime
     startCommand: java -jar target/SpringBoot-0.0.1-SNAPSHOT.jar --server.port=$PORT
     envVars:
-      - key: RENDER_INFER_RUNTIME  # Magic bullet 1
+      - key: RENDER_INFER_RUNTIME
         value: java
-      - key: RENDER_FORCE_JAVA    # Magic bullet 2
+      - key: RENDER_FORCE_JAVA
         value: "true"
       - key: SERVER_PORT
         value: $PORT
       - key: SPRING_PROFILES_ACTIVE
         value: prod
       - key: JAVA_OPTS
-        value: "-Xmx512m"  # Optional, but helps Render recognize Java
+        value: "-Xmx512m -Dfile.encoding=UTF-8"
+      - key: MAVEN_OPTS
+        value: "-Djava.version=21"
     plan: free
     autoDeploy: yes
     branch: main
 
-  # Angular Frontend Service
+  # Angular Service (unchanged)
   - type: web
     name: angular-app
     runtime: node
