@@ -20,12 +20,12 @@ public class Principal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return newUser.getUserName(); // Fixed - was throwing exception
+        return newUser.getUserName();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Return empty list or actual authorities if you have roles
+
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 

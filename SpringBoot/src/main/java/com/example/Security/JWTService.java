@@ -10,7 +10,7 @@ import java.util.function.Function;
 
 @Service
 public class JWTService {
-    private static final long EXPIRATION_TIME_MS = 3600000; // 1 hour
+    private static final long EXPIRATION_TIME_MS = 3600000; 
     private final SecretKey secretKey = Keys.hmacShaKeyFor(
         "your-256-bit-secret-key-here-1234567890".getBytes(StandardCharsets.UTF_8));
 
