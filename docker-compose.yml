@@ -5,10 +5,9 @@ services:
     image: mysql:8.0
     container_name: mysql-container
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: carflex_db
-      MYSQL_USER: lavan
-      MYSQL_PASSWORD: lavan123
+      MYSQL_DATABASE: flex
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Lavan
     ports:
       - "3307:3306"
     volumes:
