@@ -1,3 +1,7 @@
-# ./Dockerfile (Placeholder - Only for Render's validation)
-FROM alpine
-CMD echo "Docker Compose handles the actual deployment. This file is just for Render."
+# ./Dockerfile
+FROM docker/compose:1.29.2
+WORKDIR /app
+COPY docker-compose.yml .
+COPY SpringBoot ./SpringBoot
+COPY Angular ./Angular
+CMD ["docker-compose", "up", "--build"]
