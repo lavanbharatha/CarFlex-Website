@@ -42,8 +42,7 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-        
-        return http.build();
+                return http.build();
     }
 
     @Bean
@@ -65,3 +64,4 @@ public class SecurityConfig {
         return provider;
     }
 }
+
