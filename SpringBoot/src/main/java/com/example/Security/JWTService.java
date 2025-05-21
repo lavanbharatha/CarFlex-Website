@@ -18,8 +18,8 @@ public class JWTService {
     
 
     public JWTService() {
-        secretKey sk=KeyGenerator.getInstance("HmacSHA256")
-                .generateKey();
+         KeyGenerator kg=KeyGenerator.getInstance("HmacSHA256")
+             secretKey sk  =kg.generateKey();
                this.secretKey= Base64.getEncoder().encodeToString(sk.getEncoded());
     }
                
