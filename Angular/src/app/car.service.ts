@@ -6,7 +6,6 @@ import { Car } from './model/Car.model';
 
 @Injectable({
   providedIn: 'root',
-
 })
 export class CarService {
   cars: Car[] = []
@@ -29,7 +28,6 @@ export class CarService {
 
   getCarsByPurpose(purpose: string): Observable<Car[]> {
     return this.cars$.pipe(
-
       map(cars => cars.filter(car => car.carPurpose === purpose))
     );
   }

@@ -29,9 +29,9 @@ spec:
         image: mysql:8.0
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: rootpassword123
+          value: Lavan@167
         - name: MYSQL_DATABASE
-          value: carflexdb
+          value: flex
         ports:
         - containerPort: 3306
         volumeMounts:

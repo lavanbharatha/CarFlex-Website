@@ -43,12 +43,12 @@ export class HomeDetailsComponent implements OnInit {
         }
       )
     })
-  
-  }
+    }
   openImage(index: number) {
     this.imageIndex = index
     this.showImage = !this.showImage
   }
+
   handleMainImage() {
     this.showMainImage = !this.showMainImage
   }
@@ -61,7 +61,7 @@ export class HomeDetailsComponent implements OnInit {
   navigateToCarList() {
     this.router.navigate(['/home/carList'])
   }
-  
+
   goToLogin() {
     if (!this.authService.isTokenPresent()) {
       this.router.navigate(['/login'], { queryParams: { toLogin: true } });
@@ -72,15 +72,12 @@ export class HomeDetailsComponent implements OnInit {
       },
       error: (err) => {
         if (err.status === 401) {
-          // Token expired or invalid
           console.log('Session expired. Please login again.');
         } else {
-          // Other errors (like network issues, etc.)
           alert('An error occurred. Please try again.');
         }
         this.router.navigate(['/login'], { queryParams: { toLogin: true } });
       }
     });
   }
-
 }
