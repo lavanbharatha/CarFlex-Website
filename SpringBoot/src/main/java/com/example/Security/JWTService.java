@@ -3,10 +3,11 @@ package com.example.Security;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
-
+import io.jsonwebtoken.io.Decoders;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
 import java.util.function.Function;
@@ -45,8 +46,8 @@ public class JWTService {
             return false;
         }
     }
-   public String getKey(){
-       bytes[] bytes= Decoders.BASE64.decode(secretKey);
+   public Key getKey(){
+       byte[] bytes= Decoders.BASE64.decode(secretKey);
          return Keys.hmacShaKeyFor(bytes);
     }
 
