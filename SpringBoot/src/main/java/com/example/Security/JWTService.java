@@ -3,34 +3,23 @@ package com.example.Security;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
-import io.jsonwebtoken.io.Decoders;
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
-import java.util.Base64;
 import java.util.Date;
 import java.util.function.Function;
 
 @Service
 public class JWTService {
     private static final long EXPIRATION_TIME_MS = 3600000; 
-    private String secretKey = "";
-    
-
-    public JWTService() {
-         KeyGenerator kg=KeyGenerator.getInstance("HmacSHA256");
-             SecretKey sk  =kg.generateKey();
-               this.secretKey= Base64.getEncoder().encodeToString(sk.getEncoded());
-    }
-               
+    private final SecretKey secretKey = Keys.hmacShaKeyFor(
+        "secret_key_984623198465231065896523".getBytes(StandardCharsets.UTF_8));
 
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME_MS))
-                .signWith(getKey())
+                .signWith(secretKey, SignatureAlgorithm.HS256)
                 .compact();
     }
 
@@ -45,10 +34,6 @@ public class JWTService {
         } catch (JwtException e) {
             return false;
         }
-    }
-   public Key getKey(){
-       byte[] bytes= Decoders.BASE64.decode(secretKey);
-         return Keys.hmacShaKeyFor(bytes);
     }
 
     public boolean isTokenExpired(String token) throws JwtException {
